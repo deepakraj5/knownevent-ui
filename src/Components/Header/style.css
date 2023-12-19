@@ -1,0 +1,22 @@
+.header-container {
+    padding: 20px 20px 20px 20px;
+    display: flex;
+    background-color: burlywood;
+}
+
+.header-drawer {
+    position: absolute;
+    right: 0;
+    padding: 10px;
+    margin: 10px;
+}
+
+.header-drawer div {
+    display: flex;
+    margin: 2px;
+}
+
+.header-title {
+    color: dimgrey;
+    font-family: 'Courier New', Courier, monospace;
+}
