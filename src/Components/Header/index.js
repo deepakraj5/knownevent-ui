@@ -9,7 +9,7 @@ export default function AppHeader () {
 
             <div className="header-drawer">
                 <div>
-                    <Input color="primary" variant="outlined" placeholder="Search..." />
+                    {/* <Input color="primary" variant="outlined" placeholder="Search..." /> */}
                     <AppDrawer />
                 </div>
             </div>

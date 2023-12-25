@@ -1,7 +1,7 @@
 .header-container {
     padding: 20px 20px 20px 20px;
     display: flex;
-    background-color: burlywood;
+    /* background-color: grey; */
 }
 
 .header-drawer {

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
-import axios from 'axios'
+import CollegeService from "../../Service/CollegeService"
+import CollegeTab from "../CollegeTab"
+import AppHeader from "../Header"
 
 export default function College() {
 
@@ -7,7 +9,7 @@ export default function College() {
 
     useEffect(() => {
         async function fetchData() {
-            const response = await axios.get("http://localhost:8080/api/v1/colleges")
+            const response = await CollegeService.getCollegeList()
             if(response.status === 200) {
                 setCollegeList(response.data)
             }
@@ -19,24 +21,10 @@ export default function College() {
     return (
         <div>
 
-            {collegeList.map(data => 
-                <div>
-                    {data.id}
-                    {data.name}
-                    {data.pincode}
-                    {data.country}
-                    {data.createdAt}
-                    {data.events.map(event => (
-                        <div>
-                            <div>Event: {event.name}</div>
-                            <div>Event: {event.seats}</div>
-                            <div>Event: {event.dateOfEvent}</div>
-                            <br></br>
-                        </div>
-                    ))}
-                    <br></br>
-                </div>
-                
+            <AppHeader />
+
+            {collegeList.map(college => 
+                <CollegeTab key={college.id} college={college} />
             )}
 
         </div>

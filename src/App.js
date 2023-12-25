@@ -1,11 +1,21 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import College from "./Components/College";
-import AppHeader from "./Components/Header";
+import Event from "./Components/Events";
 
 function App() {
   return (
     <div>
-      <AppHeader />
-      <College />
+
+        <BrowserRouter>
+
+            <Routes>
+
+                <Route path="/" element={<Event />} />
+                <Route path="/colleges" element={<College />} />
+
+            </Routes>
+
+        </BrowserRouter>
     </div>
   );
 }
