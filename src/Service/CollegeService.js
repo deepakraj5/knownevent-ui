@@ -13,6 +13,15 @@ class CollegeService {
         }
     }
 
+    getCollegeNameList() {
+        try {
+            return axios.get(`${BASE_URL}/colleges/list`)
+        } catch (error) {
+            console.log(error)
+            return error
+        }
+    }
+
 }
 
 export default new CollegeService()

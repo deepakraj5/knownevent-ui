@@ -13,6 +13,15 @@ class EventService {
         }
     }
 
+    createNewEvent(body, collegeId) {
+        try {
+            return axios.post(`${BASE_URL}/events/college/${collegeId}`, body)
+        } catch (error) {
+            console.log(error)
+            return error
+        }
+    }
+
 }
 
 export default new EventService()

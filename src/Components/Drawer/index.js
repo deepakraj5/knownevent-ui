@@ -9,11 +9,18 @@ import Input from '@mui/joy/Input';
 import Search from '@mui/icons-material/Search';
 import Chip from '@mui/joy/Chip';
 import Button from '@mui/joy/Button';
+import { Add } from '@mui/icons-material';
+import Apps from '@mui/icons-material/Apps';
+import CreateEventModal from '../CreateEventModal';
 
 export default function AppDrawer() {
   const [open, setOpen] = React.useState(false);
-  const [type, setType] = React.useState('Guesthouse');
-  const [amenities, setAmenities] = React.useState([0, 6]);
+  const [openCreateEventModal, setOpenCreateEventModal] = React.useState(false);
+
+  const createButtonOnClick = () => {
+    setOpenCreateEventModal(!openCreateEventModal)
+    setOpen(!open)
+  }
 
   return (
     <React.Fragment>
@@ -21,6 +28,7 @@ export default function AppDrawer() {
       <Button
         variant="plain"
         color="neutral"
+        startDecorator={<Apps />}
         onClick={() => setOpen(true)}
       >
         Menu
@@ -89,8 +97,12 @@ export default function AppDrawer() {
             }}
           />
 
+            <Button startDecorator={<Add />} onClick={() => createButtonOnClick()}>Create New Event</Button>
 
-          <Divider sx={{ mt: 'auto' }} />
+            <CreateEventModal open={openCreateEventModal} setOpen={setOpenCreateEventModal} />
+
+
+            <Divider sx={{ mt: 'auto' }} />
         </Sheet>
       </Drawer>
     </React.Fragment>
