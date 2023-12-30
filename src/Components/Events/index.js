@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import CollegeTab from "../CollegeTab"
 import AppHeader from "../Header"
 import EventsService from "../../Service/EventsService"
 import EventTab from "../EventTab"

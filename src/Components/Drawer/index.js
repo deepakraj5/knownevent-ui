@@ -29,6 +29,11 @@ export default function AppDrawer() {
         navigate('/')
     }
 
+    const handleOnCollegeListClick = () => {
+        setOpen(false)
+        navigate('/colleges')
+    }
+
     return (
         <React.Fragment>
 
@@ -104,13 +109,13 @@ export default function AppDrawer() {
                         }}
                     />
 
-                    <Button startDecorator={<Stadium />} onClick={() => handleOnEventsClick()} variant='outlined' >Events</Button>
-                    <Button startDecorator={<Festival />} onClick={() => createButtonOnClick()} variant='outlined' >Create New Event</Button>
-                    <Button startDecorator={<HistoryEdu />} onClick={() => null} variant='outlined' >Colleges</Button>
-                    <Button startDecorator={<School />} onClick={() => null} variant='outlined' >Create New College</Button>
-                    <Button startDecorator={<Bookmark />} onClick={() => null} variant='outlined' >Bookmarks</Button>
-                    <Button startDecorator={<HowToReg />} onClick={() => null} variant='outlined' >My Registration</Button>
-                    <Button startDecorator={<LocationOn />} onClick={() => null} variant='outlined' >My Location</Button>
+                    <Button endDecorator={<Stadium />} onClick={() => handleOnEventsClick()} variant='outlined' >Events</Button>
+                    <Button endDecorator={<Festival />} onClick={() => createButtonOnClick()} variant='outlined' >Create New Event</Button>
+                    <Button endDecorator={<HistoryEdu />} onClick={() => handleOnCollegeListClick()} variant='outlined' >Colleges</Button>
+                    <Button endDecorator={<School />} onClick={() => null} variant='outlined' >Create New College</Button>
+                    <Button endDecorator={<Bookmark />} onClick={() => null} variant='outlined' >Bookmarks</Button>
+                    <Button endDecorator={<HowToReg />} onClick={() => null} variant='outlined' >My Registration</Button>
+                    <Button endDecorator={<LocationOn />} onClick={() => null} variant='outlined' >My Location</Button>
 
                     <CreateEventModal open={openCreateEventModal} setOpen={setOpenCreateEventModal} />
 
