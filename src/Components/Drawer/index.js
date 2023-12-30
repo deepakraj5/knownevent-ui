@@ -9,10 +9,11 @@ import Input from '@mui/joy/Input';
 import Search from '@mui/icons-material/Search';
 import Chip from '@mui/joy/Chip';
 import Button from '@mui/joy/Button';
-import { Add, Bookmark, Festival, HistoryEdu, HowToReg, LocationCity, LocationOn, Place, School, Stadium } from '@mui/icons-material';
+import { Add, Bookmark, Festival, HistoryEdu, HowToReg, LocationCity, LocationOn, NotificationImportant, Notifications, Place, School, Stadium } from '@mui/icons-material';
 import Apps from '@mui/icons-material/Apps';
 import CreateEventModal from '../CreateEventModal';
 import { useNavigate } from 'react-router-dom'
+import Badge from '@mui/joy/Badge';
 
 export default function AppDrawer() {
     const [open, setOpen] = React.useState(false);
@@ -36,6 +37,15 @@ export default function AppDrawer() {
 
     return (
         <React.Fragment>
+
+            <Chip
+                variant="plain"
+                color="neutral"
+                startDecorator={<Badge badgeContent={10} max={9} variant='soft' size='sm'>
+                    <Notifications />
+                </Badge>}
+                onClick={() => null}
+            />
 
             <Button
                 variant="plain"
