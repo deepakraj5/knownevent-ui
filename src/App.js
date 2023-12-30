@@ -1,23 +1,25 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, RouterProvider, createBrowserRouter } from "react-router-dom";
 import College from "./Components/College";
 import Event from "./Components/Events";
 
 function App() {
-  return (
-    <div>
 
-        <BrowserRouter>
+    const router = createBrowserRouter([
+        {
+            path: "/",
+            element: <Event />
+        },
+        {
+            path: "/colleges",
+            element: <College />
+        },
+    ])
 
-            <Routes>
-
-                <Route path="/" element={<Event />} />
-                <Route path="/colleges" element={<College />} />
-
-            </Routes>
-
-        </BrowserRouter>
-    </div>
-  );
+    return (
+        <div>
+            <RouterProvider router={router} />
+        </div>
+    );
 }
 
 export default App;

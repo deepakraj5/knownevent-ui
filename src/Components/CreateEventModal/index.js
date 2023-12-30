@@ -20,6 +20,7 @@ import { useEffect, useState } from 'react';
 import CollegeService from '../../Service/CollegeService';
 import EventsService from '../../Service/EventsService';
 import LinearProgress from '@mui/joy/LinearProgress';
+import Snackbar from '@mui/joy/Snackbar';
 
 
 export default function CreateEventModal({ open, setOpen }) {
@@ -33,6 +34,8 @@ export default function CreateEventModal({ open, setOpen }) {
     const [noOfSeats, setNoOfSeats] = useState(0)
     const [eventCollge, setEventCollge] = useState('')
     const [creatingEvent, setCreatingEvent] = useState(false)
+    const [errorMessage, setErrorMessage] = useState('')
+    const [openErrorSnackbar, setOpenErrorSnackbar] = useState(false)
 
     const fetchCollegeList = async () => {
         try {
@@ -57,13 +60,23 @@ export default function CreateEventModal({ open, setOpen }) {
         }
 
         try {
+
+            if(eventCollge === '' || eventCollge === undefined) {
+                setErrorMessage('Please select the college')
+                setOpenErrorSnackbar(true)
+            }
+
             const response = await EventsService.createNewEvent(createEventData, eventCollge)
             if(response.status === 201) {
                 setCreatingEvent(false)
                 setOpen(false)
+            } else {
+                setErrorMessage(response.error)
+                setOpenErrorSnackbar(true)
             }
         } catch (error) {
-            
+            setErrorMessage(error)
+            setOpenErrorSnackbar(true)
         }
 
     }
@@ -159,7 +172,7 @@ export default function CreateEventModal({ open, setOpen }) {
                                     </FormControl>
 
                                     <CardActions sx={{ gridColumn: '1/-1' }}>
-                                        <Button variant="solid" color="primary" onClick={() => handleOnCreateEvent()}>
+                                        <Button variant="solid" color="primary" onClick={() => handleOnCreateEvent()} disabled={creatingEvent}>
                                             Create Event
                                         </Button>
                                     </CardActions>
@@ -170,6 +183,7 @@ export default function CreateEventModal({ open, setOpen }) {
                     </DialogContent>
                 </ModalDialog>
             </Modal>
+            {/* <Snackbar color="danger" variant="soft" open={openErrorSnackbar}>{errorMessage}</Snackbar> */}
         </div>
     )
 }
