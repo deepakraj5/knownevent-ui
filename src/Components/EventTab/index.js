@@ -15,9 +15,10 @@ import moment from 'moment';
 import Chip from '@mui/joy/Chip';
 import { Bookmark, BookmarkBorder, BookmarkOutlined, Cloud } from '@mui/icons-material';
 import CircularProgress from '@mui/joy/CircularProgress';
+import { useNavigate } from 'react-router-dom'
 
 
-export default function EventTab({ event }) {
+export default function EventTab({ event, moreEventsEnabled }) {
 
     const isEventRegistrationAvialable = (date) => {
         return moment(date).isSameOrBefore(new Date())
@@ -30,12 +31,18 @@ export default function EventTab({ event }) {
     const [bookmark, setBookmark] = useState(false)
     const [bookmarkLoading, setBookmarkLoading] = useState(false)
 
+    const navigate = useNavigate()
+
     const handleBookmarkEvent = (event) => {
         setBookmarkLoading(true)
         setTimeout(() => {
             setBookmarkLoading(false)
             setBookmark(event)
         }, 1000)
+    }
+
+    const handleCollegeEvent = (collegeId) => {
+        navigate(`/events/college/${collegeId}?pageSize=10&pageNumber=0`)
     }
 
     return (
@@ -51,7 +58,7 @@ export default function EventTab({ event }) {
                     <Typography level="title-lg">{event.name}</Typography>
 
                     <Typography level="body-sm" sx={{ maxWidth: '24ch' }}>
-                        {event.description}
+                        College Name: {event.college.name}
                     </Typography>
 
 
@@ -184,7 +191,11 @@ export default function EventTab({ event }) {
                 <CardOverflow sx={{ bgcolor: 'background.level1' }}>
                     <CardActions buttonFlex="1">
                         <ButtonGroup variant="outlined" sx={{ bgcolor: 'background.surface' }}>
-                            <Button>More events in this college</Button>
+                            
+                            {moreEventsEnabled
+                                ? <Button onClick={() => handleCollegeEvent(event.college.id)}>More events in this college</Button>
+                                : ''
+                            }
 
                             {isEventRegistrationAvialable(event.registrationBegin)
                                 ? <Button variant="solid" color='primary'>Register Now</Button>

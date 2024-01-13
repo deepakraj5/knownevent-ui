@@ -2,3 +2,23 @@
     display: grid;
     grid-template-columns: auto auto auto;
 }
+
+.pagination {
+    position: absolute;
+    right: 0;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 60px 0px 0px;
+}
+
+
+@media only screen and (max-width: 1500px) {
+    .event-container {
+        grid-template-columns: auto auto;
+    }
+}
+
+@media only screen and (max-width: 1030px) {
+    .event-container {
+        grid-template-columns: auto;
+    }
+}

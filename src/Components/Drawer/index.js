@@ -27,7 +27,7 @@ export default function AppDrawer() {
 
     const handleOnEventsClick = () => {
         setOpen(false)
-        navigate('/')
+        navigate('/?pageNumber=0')
     }
 
     const handleOnCollegeListClick = () => {

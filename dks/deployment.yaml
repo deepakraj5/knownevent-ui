@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: known-event-ui
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: known-event-ui
+  template:
+    metadata:
+      labels:
+        app: known-event-ui
+    spec:
+      containers:
+        - name: known-event-ui
+          image: registry.digitalocean.com/known-events/known-event-ui
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
